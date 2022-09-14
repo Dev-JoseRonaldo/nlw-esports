@@ -1,51 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StatusBar } from 'react-native'
+import {
+  useFonts,
+  Inter_400Regular,
+  Inter_600SemiBold,
+  Inter_700Bold,
+  Inter_900Black
+} from '@expo-google-fonts/inter'
 
-interface ButtonProps {
-  title: string
-}
-
-function Button( { title }: ButtonProps) {
-  return (
-    <TouchableOpacity>
-      <Text  style={styles.button}>
-        {title}
-      </Text>
-    </TouchableOpacity>
-  )
-}
+import { Background } from './src/components/Background'
+import { Home } from './src/screens/Home'
+import { Loading } from './src/components/Loading'
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Inter_400Regular,
+    Inter_600SemiBold,
+    Inter_700Bold,
+    Inter_900Black
+  })
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Hello NLW eSports</Text>
+    <Background>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
 
-      <Button title='Next' />
-      <Button title='Level' />
-      <Button title='Week' />
-
-      <StatusBar style="auto" backgroundColor='#fff'/>
-    </View>
-  );
+      {fontsLoaded ? <Home /> : <Loading />}
+    </Background>
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000000',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    color: '#fff',
-    fontSize: 22,
-  },
-  button: {
-    color: '#000',
-    fontSize: 22,
-    padding: 16,
-    backgroundColor: '#fff',
-    marginTop: 30,
-    borderRadius: 12,
-  },
-});
