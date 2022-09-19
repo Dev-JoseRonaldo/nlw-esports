@@ -3,9 +3,10 @@ import cors from 'cors'
 
 import { PrismaClient } from '@prisma/client'
 
-
 import { convertHoursStringToMinutes } from './utils/convert-hour-string-to-minutes'
 import { converMinutesToHourString } from './utils/convert-minutes-to-hour-string'
+
+const port = process.env.PORT || 3333
 
 const app = express()
 
@@ -93,4 +94,4 @@ app.get("/ads/:id/discord", async (request, response) => {
   return response.json({discord: ad.discord});
 });
 
-app.listen(3333)
+app.listen(port)

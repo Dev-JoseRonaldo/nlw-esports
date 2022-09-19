@@ -10,6 +10,8 @@ import logoImg from './assets/logo-nlw-esports.svg'
 import { CreateAdModal } from './components/CreateAdModal'
 import axios from 'axios'
 
+const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:3333'
+
 interface Game {
   id: string
   title: string
@@ -22,7 +24,7 @@ interface Game {
 function App() {
   const [games, setGames] = useState<Game[]>([])
   useEffect(() => {
-    axios('http://localhost:3333/games').then(response => {
+    axios(`${baseURL}/games`).then(response => {
       setGames(response.data)
     })
   }, [])
