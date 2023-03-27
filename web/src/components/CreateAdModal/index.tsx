@@ -14,7 +14,7 @@ interface Game {
 }
 
 // const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8080'
-const baseURL = 'localhost:8080'
+const baseURL = 'http://localhost:8080'
 
 export function CreateAdModal() {
   const [games, setGames] = useState<Game[]>([])
